@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahul Pal | Coder Pal</title>
+
+<link rel="icon" type="image/svg+xml"
+ href="data:image/svg+xml;utf8,
+ <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='cyan'>
+ <path d='M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z'/>
+ </svg>">
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ font-family:'Orbitron',monospace;
+ background:#000;
+ color:#8fefff;
+ overflow-x:hidden;
+ cursor:url("data:image/svg+xml;utf8,\
+ <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'>\
+ <rect x='14' y='2' width='4' height='22' fill='cyan'/>\
+ <rect x='13' y='24' width='6' height='6' fill='magenta'/>\
+ </svg>") 16 16, auto;
+}
+
+/* ===== STARFIELD ===== */
+.starfield{position:fixed;inset:0;z-index:-2}
+.star{
+ position:absolute;
+ background:#fff;
+ border-radius:50%;
+ opacity:.8;
+ animation:warp 90s linear infinite;
+}
+@keyframes warp{from{transform:translateY(0)}to{transform:translateY(-300vh)}}
+
+/* ===== NAV ===== */
+nav{
+ position:fixed;
+ top:0;width:100%;
+ padding:1rem 4%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ background:rgba(0,0,25,.9);
+ backdrop-filter:blur(12px);
+ border-bottom:1px solid rgba(0,255,255,.3);
+ z-index:1000;
+}
+nav strong{
+ font-size:1.2rem;
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+nav a{
+ color:#00ffff;
+ text-decoration:none;
+ margin-left:1.6rem;
+ font-size:.8rem;
+ letter-spacing:2px;
+}
+nav a:hover{color:#ff3cac}
+
+/* ===== SECTIONS ===== */
+section{padding:120px 7%}
+.panel{
+ background:radial-gradient(circle at top,#0c1325,#02040a 75%);
+ border:1px solid rgba(0,255,255,.45);
+ border-radius:26px;
+ padding:3.5rem;
+ box-shadow:0 0 70px rgba(0,255,255,.3);
+}
+
+h1,h2,h3{
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+h2{text-align:center;font-size:2.6rem;margin-bottom:3rem}
+
+/* ===== HERO ===== */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.hero{display:flex;gap:4rem;align-items:center}
+.hero img{
+ width:260px;height:260px;
+ border-radius:22px;
+ border:3px solid #00ffff;
+ box-shadow:0 0 50px #00ffff;
+}
+.hero button{
+ margin-top:2rem;
+ padding:14px 38px;
+ font-size:.85rem;
+ letter-spacing:2px;
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ border:none;
+ border-radius:40px;
+ color:#000;
+ cursor:pointer;
+ box-shadow:0 0 35px #00ffff;
+ animation:pulse 2s infinite;
+}
+@keyframes pulse{
+ 0%{box-shadow:0 0 20px #00ffff}
+ 50%{box-shadow:0 0 50px #ff3cac}
+ 100%{box-shadow:0 0 20px #00ffff}
+}
+
+/* ===== SKILLS ===== */
+.skills{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:2rem;
+}
+.skill{
+ background:rgba(0,0,35,.75);
+ padding:2rem;
+ border-radius:20px;
+ position:relative;
+ overflow:hidden;
+}
+.bar{
+ height:12px;
+ background:#02040a;
+ border-radius:10px;
+ margin:1rem 0;
+ overflow:hidden;
+}
+.fill{
+ height:100%;
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ width:0;
+ animation:fillGlow 2s forwards;
+}
+@keyframes fillGlow{
+ 0%{width:0; box-shadow:0 0 5px #00ffff;}
+ 50%{box-shadow:0 0 10px #ff3cac;}
+ 100%{width:100%; box-shadow:0 0 20px #00ffff,0 0 25px #ff3cac;}
+}
+
+/* ===== PROJECTS ===== */
+.projects{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+ gap:2rem;
+}
+.project{
+ background:rgba(0,0,35,.85);
+ padding:2rem;
+ border-radius:22px;
+ transition:0.3s;
+}
+.project h3{
+ text-shadow:0 0 8px #00ffff,0 0 15px #ff3cac;
+ transition:0.3s;
+}
+
+/* ===== EXPERIENCE ===== */
+.exp{
+ background:rgba(0,0,35,.9);
+ padding:2rem;
+ border-radius:22px;
+ margin-bottom:2rem;
+}
+.exp strong, .exp span, .exp h3{
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ -webkit-background-clip:text;
+ -webkit-text-fill-color:transparent;
+}
+
+/* ===== CERTS ===== */
+.certs{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:2rem;
+}
+.cert{
+ background:rgba(0,0,35,.8);
+ padding:2rem;
+ border-radius:20px;
+ text-align:center;
+}
+
+/* ===== CONTACT ===== */
+.contact{display:flex;justify-content:space-between;gap:3rem}
+.contact i{color:#ff3cac;margin-right:10px}
+.magenta{color:#ff3cac}
+
+/* ===== AUDIO ===== */
+.audio-toggle{
+ position:fixed;
+ bottom:30px;right:30px;
+ padding:12px 18px;
+ border-radius:50px;
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ color:#000;
+ cursor:pointer;
+ box-shadow:0 0 30px #00ffff;
+ z-index:1200;
+}
+
+/* ===== MODAL ===== */
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.65);
+ backdrop-filter:blur(8px);
+ z-index:2000;
+}
+.modal-content{
+ width:80%;
+ height:80%;
+ margin:auto;
+ margin-top:5%;
+ background:#02040a;
+ border:2px solid #00ffff;
+ box-shadow:0 0 70px #00ffff;
+ border-radius:22px;
+ position:relative;
+}
+.modal iframe{width:100%;height:100%;border:none}
+.download{
+ position:absolute;
+ bottom:20px;right:20px;
+ padding:12px 26px;
+ background:linear-gradient(90deg,#00ffff,#ff3cac);
+ border:none;
+ border-radius:30px;
+ cursor:pointer;
+ box-shadow:0 0 35px #ff3cac;
+}
+
+/* ===== FOOT ===== */
+.footer{text-align:center;padding:4rem;letter-spacing:3px}
+
+@media(max-width:900px){
+ .hero,.contact{flex-direction:column;text-align:center}
+ .skills,.certs{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="starfield" id="stars"></div>
+
+<nav>
+ <strong>CODER PAL</strong>
+ <div>
+  <a href="#hero">HOME</a>
+  <a href="#skills">WEAPONS</a>
+  <a href="#projects">MISSIONS</a>
+  <a href="#experience">SERVICE</a>
+  <a href="#certs">CERTS</a>
+  <a href="#contact">COMM</a>
+ </div>
+</nav>
+
+<section id="hero">
+<div class="panel hero">
+<div>
+<h1>RAHUL PAL</h1>
+<p>
+WEB APPLICATION <strong>COMMANDER</strong> <br><br>
+MASTERING PYTHON FORCE <span class="magenta">|</span> FASTAPI HYPERDRIVES <span class="magenta">|</span> POSTGRESQL WARP CORES<br><br>
+<strong>1.5+ YEARS OF ACTIVE DEPLOYMENT</strong>
+</p>
+<button onclick="openResume()">DEPLOY RESUME</button>
+</div>
+<img src="profile.png">
+</div>
+</section>
+
+<section id="skills">
+<div class="panel">
+<h2>WEAPON SYSTEMS & FORCE TRAINING</h2>
+<div class="skills">
+<div class="skill">
+PYTHON Force Mastery
+<div class="bar"><div class="fill" style="width:95%"></div></div>
+</div>
+
+<div class="skill">
+FASTAPI Hyperdrive Engineering
+<div class="bar"><div class="fill" style="width:92%"></div></div>
+</div>
+
+<div class="skill">
+POSTGRESQL Data Fortress
+<div class="bar"><div class="fill" style="width:88%"></div></div>
+</div>
+
+<div class="skill">
+MYSQL Archival Vault
+<div class="bar"><div class="fill" style="width:85%"></div></div>
+</div>
+
+<div class="skill">
+DSA Training Grounds
+<p>Sharpening algorithmic combat and data structure discipline at the Jedi Academy</p>
+</div>
+
+<div class="skill">
+SYSTEM DESIGN War Rooms
+<p>Learning large-scale galactic system architecture and resilience patterns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="projects">
+<div class="panel">
+<h2>MISSION LOGS</h2>
+<div class="projects">
+<div class="project">
+<h3>ORDER-TO-DISPATCH WARP ENGINE</h3>
+<ul>
+<li>40% hyperspace velocity improvement across order fulfillment</li>
+<li>FastAPI command core with PostgreSQL data reactor</li>
+</ul>
+</div>
+
+<div class="project">
+<h3>INVENTORY HYPERMATRIX</h3>
+<ul>
+<li>Handled 150+ concurrent fleet operators</li>
+<li>Reduced inventory anomalies by 50%</li>
+<li>Built on MySQL fortress architecture</li>
+</ul>
+</div>
+
+<div class="project">
+<h3>POWER BI QUANTUM DASH</h3>
+<ul>
+<li>Real-time battlefield intelligence dashboards</li>
+<li>REST API powered analytics pipelines</li>
+</ul>
+</div>
+
+<div class="project">
+<h3>TICKETING HYPERNET</h3>
+<ul>
+<li>100% force adoption across internal teams</li>
+<li>FastAPI backend with JavaScript command interface</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section id="experience">
+<div class="panel">
+<h2>SERVICE RECORD</h2>
+
+<div class="exp">
+<h3>WEB APPLICATION <strong>COMMANDER</strong></h3>
+<p><strong>KALKI FASHION FLEET</strong> | <span>MAY 2025 – PRESENT</span></p>
+<ul>
+<li>Designed order-to-dispatch hyperdrive systems</li>
+<li>Built inventory hypermatrix supporting 150+ users</li>
+<li>Delivered real-time Power BI command dashboards</li>
+<li>Architected production-grade warp systems</li>
+</ul>
+</div>
+
+<div class="exp">
+<h3>DATA COMMAND <strong>EXECUTIVE</strong></h3>
+<p><strong>KALKI FASHION FLEET</strong> | <span>APR 2024 – APR 2025</span></p>
+<ul>
+<li>Migrated Sheets data to PostgreSQL quantum vaults</li>
+<li>Developed ticketing hypernet with FastAPI</li>
+<li>Unified order and dispatch data flows</li>
+<li>Enabled cross-force Power BI intelligence</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="certs">
+<div class="panel">
+<h2>FORCE CERTIFICATIONS</h2>
+<div class="certs">
+<div class="cert">Python Bootcamp<br>CodeWithHarry • Udemy</div>
+<div class="cert">FastAPI<br>Eric Robya, Chad Darby • Udemy</div>
+
+<div class="cert">DSA<br>GeeksforGeeks • Udemy</div>
+<div class="cert">System Design<br>Sweet Codey, Suresh Gandhi • Udemy</div>
+
+<div class="cert">SQL & PostgreSQL<br>Stephen Grider • Udemy</div>
+<div class="cert">AI/ML<br>Krish Naik • Udemy</div>
+
+<div class="cert">JavaScript<br>James McArthur• Udemy</div>
+<div class="cert">HTML CSS<br>Jonas Schmedtmann • Udemy</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="panel contact">
+<div>
+<h3>COMM CHANNELS</h3>
+<p>
+<i class="fa-solid fa-location-dot"></i> Mumbai
+<span class="magenta"> | </span>
+<i class="fa-solid fa-phone"></i> +91 7400208221
+</p>
+<p>
+<i class="fa-solid fa-envelope"></i> mail.rahulpal@gmail.com
+</p>
+</div>
+
+<div>
+<p><i class="fab fa-github"></i>
+<a href="https://github.com/coderpal" target="_blank">GitHub</a></p>
+<p><i class="fab fa-linkedin"></i>
+<a href="https://www.linkedin.com/in/rahulpal1991/" target="_blank">LinkedIn</a></p>
+</div>
+</div>
+</section>
+
+<div class="footer">
+PROJECT MISSION LOGS • HYPERSPACE ENGAGING SOON
+</div>
+
+<!-- AUDIO TOGGLE -->
+<button class="audio-toggle" onclick="toggleAudio()">FORCE AUDIO</button>
+
+<!-- RESUME MODAL -->
+<div class="modal" id="resume" onclick="closeResume(event)">
+ <div class="modal-content">
+  <iframe src="Rahul Pal - Developer.pdf"></iframe>
+  <a href="Rahul Pal - Developer.pdf" download>
+   <button class="download">EXPORT DATA CORE (PDF)</button>
+  </a>
+ </div>
+</div>
+
+<script>
+/* STARFIELD */
+const sf=document.getElementById('stars');
+for(let i=0;i<200;i++){
+ const s=document.createElement('div');
+ s.className='star';
+ s.style.width=s.style.height=Math.random()*2+1+'px';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*300+'%';
+ s.style.animationDelay=Math.random()*90+'s';
+ sf.appendChild(s);
+}
+
+/* MODAL */
+function openResume(){document.getElementById('resume').style.display='block'}
+function closeResume(e){
+ if(e.target.classList.contains('modal')){
+  document.getElementById('resume').style.display='none';
+ }
+}
+
+/* AUDIO AUTOPLAY + TOGGLE */
+let hum = new Audio('https://cdn.pixabay.com/audio/2022/03/15/audio_1cfa6d44c5.mp3');
+hum.loop = true;
+hum.volume = 0.2;
+
+// Attempt to autoplay on page load
+window.addEventListener('load', ()=>{
+ hum.play().catch(()=>console.log("User interaction required for audio"));
+});
+let playing = true;
+
+function toggleAudio(){
+ if(playing){
+    hum.pause();
+    playing=false;
+ } else {
+    hum.play();
+    playing=true;
+ }
+}
+
+/* PROJECT HEADER GLOW EFFECT ON HOVER */
+document.querySelectorAll('.project h3').forEach(header=>{
+ header.addEventListener('mouseover', ()=>{
+   header.style.textShadow='0 0 15px #00ffff, 0 0 25px #ff3cac';
+ });
+ header.addEventListener('mouseout', ()=>{
+   header.style.textShadow='0 0 8px #00ffff, 0 0 15px #ff3cac';
+ });
+});
+</script>
+
+</body>
+</html>
