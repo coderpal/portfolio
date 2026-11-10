@@ -1,0 +1,808 @@
+<!--
+==============================================
+FILE: blog/blog-lists.html
+DESCRIPTION: Comprehensive guide to Python Lists
+==============================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A comprehensive guide to Python lists covering creation, methods, comprehensions, memory, performance, and production patterns.">
+  <meta name="keywords" content="Python, lists, data structures, backend development, programming tutorial">
+  <title>Comprehensive Guide to Python Lists | Rahul Pal</title>
+  <link rel="stylesheet" href="../style.css">
+  
+  <!-- Highlight.js for Python syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body>
+  
+  <!-- ============================================
+       NAVIGATION BAR
+       ============================================ -->
+  <header class="main-header">
+    <nav class="nav-container">
+      <div class="logo">Rahul Pal</div>
+      <div class="nav-links">
+        <a href="../index.html">About</a>
+        <a href="../index.html#projects">Projects</a>
+        <a href="../index.html#experience">Experience</a>
+        <a href="../blog.html" class="active">Blog</a>
+        <a href="../index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================
+       BLOG POST HERO
+       ============================================ -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <p class="section-label">Python · Data Structures</p>
+      <h1 class="blog-title">Comprehensive Guide to Python Lists</h1>
+      <p class="blog-subtitle">
+        A deep dive into Python lists — from basic creation to memory layout, 
+        performance characteristics, and production patterns used in real backend systems.
+      </p>
+      <div class="blog-card-meta" style="justify-content: center; margin-top: 2rem;">
+        <span class="blog-date">November 9, 2026</span>
+        <span class="blog-category">Python</span>
+        <span class="blog-category">Data Structures</span>
+        <span class="blog-date">· 18 min read</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ARTICLE CONTENT
+       ============================================ -->
+  <div class="main-content">
+    <article class="prose blog-section">
+      
+      <!-- Back to Blog Button -->
+      <a href="../blog.html" class="btn btn-primary" style="margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <span>←</span> Back to Blog
+      </a>
+
+      <!-- ============================================
+           INTRODUCTION
+           ============================================ -->
+      <p>
+        If you write Python, you use lists. Every single day. They are the workhorse data structure 
+        of the language — the default choice for ordered, mutable collections — and yet most 
+        developers only ever scratch the surface of what lists can do.
+      </p>
+      
+      <p>
+        I have been writing Python professionally for over two years, building backend systems 
+        that process thousands of records, automate data pipelines, and handle real-time webhooks. 
+        In that time, I have learned that <strong>mastering lists is not optional</strong> — it is 
+        the single highest-leverage skill a Python developer can develop. Lists are everywhere: 
+        in API responses, database query results, configuration files, data transformation pipelines, 
+        and even the internal implementation of many other Python objects.
+      </p>
+
+      <p>
+        This guide covers everything from the absolute basics to advanced production-level 
+        concepts that most tutorials skip. By the end, you will understand lists at a level that 
+        will make you write faster, cleaner, and more reliable Python code.
+      </p>
+
+      <hr>
+
+      <!-- ============================================
+           TABLE OF CONTENTS
+           ============================================ -->
+      <h2>📑 Table of Contents</h2>
+      <ul class="toc-list">
+        <li><a href="#chapter-1">Chapter 1: The Foundation — Creating and Manipulating Lists</a></li>
+        <li><a href="#chapter-2">Chapter 2: Intermediate — Writing Pythonic Code</a></li>
+        <li><a href="#chapter-3">Chapter 3: Advanced — Memory, Performance, and Internals</a></li>
+        <li><a href="#chapter-4">Chapter 4: Production Patterns — Real-World Usage</a></li>
+        <li><a href="#cheat-sheet">Cheat Sheet</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ul>
+
+      <hr>
+
+      <!-- ============================================
+           CHAPTER 1: FOUNDATION
+           ============================================ -->
+      <h2 id="chapter-1">🟢 Chapter 1: The Foundation</h2>
+      
+      <h3>What is a List?</h3>
+      <p>
+        A list in Python is an <strong>ordered, mutable, heterogeneous collection</strong> of items. 
+        Let's unpack each of those words:
+      </p>
+      <ul>
+        <li><strong>Ordered:</strong> Items maintain the sequence in which they were inserted. The first item you add stays at index 0.</li>
+        <li><strong>Mutable:</strong> You can add, remove, or change items after the list is created.</li>
+        <li><strong>Heterogeneous:</strong> A single list can contain integers, strings, objects, even other lists — all mixed together.</li>
+      </ul>
+
+      <h3>Creating Lists</h3>
+      <p>There are several ways to create a list in Python. The most common is using square brackets:</p>
+      
+<pre><code class="language-python"># Empty list
+empty = []
+
+# List of integers
+numbers = [1, 2, 3, 4, 5]
+
+# Heterogeneous list (valid, but rarely a good idea)
+mixed = [1, "hello", 3.14, True, None]
+
+# From another iterable using the list() constructor
+chars = list("hello")        # ['h', 'e', 'l', 'l', 'o']
+range_list = list(range(5))  # [0, 1, 2, 3, 4]
+tuple_list = list((1, 2, 3)) # [1, 2, 3]
+
+# List with a single element
+single = [42]</code></pre>
+
+      <h3>Accessing Elements: Indexing and Slicing</h3>
+      <p>
+        Lists use <strong>zero-based indexing</strong>. The first element is at index 0, the second at 1, and so on. 
+        Python also supports <strong>negative indexing</strong>, where <code>-1</code> refers to the last element.
+      </p>
+
+<pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+# Positive indexing
+print(fruits[0])   # "apple"
+print(fruits[2])   # "cherry"
+
+# Negative indexing
+print(fruits[-1])  # "elderberry"
+print(fruits[-2])  # "date"
+
+# Slicing: list[start:stop:step]
+print(fruits[1:3])     # ["banana", "cherry"]  (stop is exclusive)
+print(fruits[:3])      # ["apple", "banana", "cherry"]
+print(fruits[2:])      # ["cherry", "date", "elderberry"]
+print(fruits[::2])     # ["apple", "cherry", "elderberry"] (every 2nd)
+print(fruits[::-1])    # Reversed list</code></pre>
+
+      <blockquote>
+        <strong>Important:</strong> Slicing never raises an <code>IndexError</code>. If you ask for 
+        <code>fruits[100:200]</code>, you simply get an empty list <code>[]</code>. This is a 
+        deliberate design choice that makes slicing safe and predictable.
+      </blockquote>
+
+      <h3>Adding Elements</h3>
+      <p>Python provides several methods to add elements to a list, each with different use cases:</p>
+
+<pre><code class="language-python">fruits = ["apple", "banana"]
+
+# append() — add a single item to the end. O(1) amortized.
+fruits.append("cherry")
+# ["apple", "banana", "cherry"]
+
+# extend() — add all items from an iterable. O(K) where K is length of iterable.
+fruits.extend(["date", "elderberry"])
+# ["apple", "banana", "cherry", "date", "elderberry"]
+
+# insert() — insert at a specific index. O(N) because elements must shift.
+fruits.insert(0, "avocado")  # Insert at the beginning
+fruits.insert(2, "blueberry")  # Insert at index 2
+
+# The += operator is equivalent to extend()
+fruits += ["fig", "grape"]
+
+# The * operator repeats a list
+zeros = [0] * 5  # [0, 0, 0, 0, 0]
+matrix = [[0] * 3] * 3  # ⚠️ See the "Gotchas" section below!</code></pre>
+
+      <h3>Removing Elements</h3>
+
+<pre><code class="language-python">fruits = ["apple", "banana", "cherry", "date", "elderberry"]
+
+# remove() — remove first occurrence of a value. O(N).
+fruits.remove("cherry")
+# Raises ValueError if value not found
+
+# pop() — remove and return item at index (default: last). O(N) for non-last.
+last = fruits.pop()       # Removes and returns "elderberry"
+first = fruits.pop(0)     # Removes and returns "apple"
+
+# del statement — remove by index or slice
+del fruits[1]             # Remove item at index 1
+del fruits[0:2]           # Remove a slice
+
+# clear() — remove all items
+fruits.clear()            # fruits is now []</code></pre>
+
+      <h3>Other Essential Methods</h3>
+
+<pre><code class="language-python">numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# len() — number of items. O(1).
+print(len(numbers))       # 8
+
+# count() — count occurrences of a value. O(N).
+print(numbers.count(1))   # 2
+
+# index() — find first index of a value. O(N).
+print(numbers.index(5))   # 4
+# Raises ValueError if not found
+
+# sort() — sort in place. O(N log N).
+numbers.sort()
+numbers.sort(reverse=True)
+
+# sorted() — return a new sorted list (doesn't mutate original)
+sorted_nums = sorted(numbers)
+
+# reverse() — reverse in place. O(N).
+numbers.reverse()
+
+# reversed() — return a reverse iterator (doesn't mutate)
+for n in reversed(numbers):
+    print(n)
+
+# Membership testing with 'in'. O(N).
+if 5 in numbers:
+    print("Found it!")</code></pre>
+
+      <hr>
+
+      <!-- ============================================
+           CHAPTER 2: INTERMEDIATE
+           ============================================ -->
+      <h2 id="chapter-2">🟡 Chapter 2: Intermediate — Writing Pythonic Code</h2>
+
+      <h3>List Comprehensions</h3>
+      <p>
+        List comprehensions are one of Python's most powerful features. They let you create new lists 
+        from existing iterables in a single, readable line. The general syntax is:
+      </p>
+      <p><code>[expression for item in iterable if condition]</code></p>
+
+<pre><code class="language-python"># Basic: square each number
+squares = [x**2 for x in range(5)]
+# [0, 1, 4, 9, 16]
+
+# With condition: only even squares
+even_squares = [x**2 for x in range(10) if x % 2 == 0]
+# [0, 4, 16, 36, 64]
+
+# With if-else: transform selectively
+labels = ["even" if x % 2 == 0 else "odd" for x in range(5)]
+# ["even", "odd", "even", "odd", "even"]
+
+# Nested loops: flattening a 2D list
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flat = [x for row in matrix for x in row]
+# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# With function calls
+names = ["alice", "bob", "charlie"]
+upper_names = [name.upper() for name in names]
+# ["ALICE", "BOB", "CHARLIE"]</code></pre>
+
+      <blockquote>
+        <strong>Rule of thumb:</strong> If your comprehension needs more than one <code>if</code> 
+        filter or a nested loop that's hard to read, convert it to a regular <code>for</code> loop. 
+        Readability beats cleverness.
+      </blockquote>
+
+      <h3>Nested Lists</h3>
+      <p>
+        Lists can contain other lists, forming 2D (or higher-dimensional) structures. This is common 
+        for representing matrices, grids, and tabular data.
+      </p>
+
+<pre><code class="language-python"># 2D list (matrix)
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Accessing elements
+print(matrix[0][0])   # 1 (first row, first column)
+print(matrix[1][2])   # 6 (second row, third column)
+
+# Iterating through a 2D list
+for row in matrix:
+    for item in row:
+        print(item, end=" ")
+    print()
+
+# Transposing a matrix using list comprehension
+transposed = [[matrix[i][j] for i in range(len(matrix))] 
+              for j in range(len(matrix[0]))]</code></pre>
+
+      <h3>Sorting Lists</h3>
+      <p>Python provides two ways to sort: <code>sort()</code> (in-place) and <code>sorted()</code> (returns new list).</p>
+
+<pre><code class="language-python">numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# In-place sort
+numbers.sort()
+print(numbers)  # [1, 1, 2, 3, 4, 5, 6, 9]
+
+# Return new sorted list
+original = [3, 1, 4]
+new_list = sorted(original)
+print(original)   # [3, 1, 4] (unchanged)
+print(new_list)   # [1, 3, 4]
+
+# Sorting with a key function
+words = ["banana", "apple", "cherry", "date"]
+words.sort(key=len)  # Sort by length
+# ["date", "apple", "banana", "cherry"]
+
+# Sorting objects by attribute
+users = [
+    {"name": "Alice", "age": 30},
+    {"name": "Bob", "age": 25},
+    {"name": "Charlie", "age": 35}
+]
+users.sort(key=lambda u: u["age"])
+
+# Reverse sort
+numbers.sort(reverse=True)</code></pre>
+
+      <h3>Copying Lists: Shallow vs. Deep</h3>
+      <p>
+        This is one of the most common sources of bugs for intermediate Python developers. 
+        Understanding shallow vs. deep copy is essential.
+      </p>
+
+<pre><code class="language-python"># Shallow copy — copies the outer list, but nested objects are shared
+original = [[1, 2], [3, 4]]
+
+# Three ways to shallow copy:
+copy1 = original.copy()
+copy2 = original[:]
+copy3 = list(original)
+
+# Modifying the outer list doesn't affect the copy
+copy1.append([5, 6])
+
+# But modifying a nested object DOES affect the original!
+copy1[0][0] = 99
+print(original[0][0])  # 99 — original is affected!
+
+# Deep copy — recursively copies everything
+import copy
+original = [[1, 2], [3, 4]]
+deep = copy.deepcopy(original)
+deep[0][0] = 99
+print(original[0][0])  # 1 — original is NOT affected</code></pre>
+
+      <hr>
+
+      <!-- ============================================
+           CHAPTER 3: ADVANCED
+           ============================================ -->
+      <h2 id="chapter-3">🔴 Chapter 3: Advanced — Memory, Performance, and Internals</h2>
+
+      <h3>How Lists Are Implemented in CPython</h3>
+      <p>
+        Under the hood, a Python list is a <strong>dynamic array of pointers</strong>. Each element 
+        in the list is a pointer to a Python object stored elsewhere in memory. This has important 
+        implications:
+      </p>
+      <ul>
+        <li><strong>Indexing is O(1)</strong> — because the array is contiguous, accessing any index is a simple pointer arithmetic operation.</li>
+        <li><strong>Lists are not linked lists</strong> — despite the name, they behave like arrays.</li>
+        <li><strong>Memory overhead</strong> — each element is a pointer (8 bytes on 64-bit systems) plus the object itself.</li>
+      </ul>
+
+<pre><code class="language-python"># Inspecting list internals
+import sys
+
+numbers = [1, 2, 3, 4, 5]
+print(sys.getsizeof(numbers))  # Size of the list object itself
+# 120 bytes (on 64-bit Python)
+
+# The list has extra allocated space for future appends
+# This is why append() is O(1) amortized — it doesn't reallocate every time</code></pre>
+
+      <h3>Amortized Analysis of Append</h3>
+      <p>
+        When a list runs out of allocated space, Python over-allocates to avoid frequent reallocations. 
+        The growth pattern in CPython is roughly: <code>0, 4, 8, 16, 25, 35, 46, 58, 72, 88, ...</code>
+      </p>
+      <p>
+        This means most <code>append()</code> calls are O(1), but occasionally one triggers a 
+        reallocation that is O(N). Averaged over many operations, append is <strong>O(1) amortized</strong>.
+      </p>
+
+      <h3>Performance Characteristics</h3>
+      <p>Understanding time complexity is critical for writing efficient code:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>Average Case</th>
+            <th>Worst Case</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>lst[i]</code> — Index</td>
+            <td>O(1)</td>
+            <td>O(1)</td>
+            <td>Pointer arithmetic</td>
+          </tr>
+          <tr>
+            <td><code>lst.append(x)</code></td>
+            <td>O(1)</td>
+            <td>O(N)</td>
+            <td>Amortized; occasional reallocation</td>
+          </tr>
+          <tr>
+            <td><code>lst.pop()</code> — last</td>
+            <td>O(1)</td>
+            <td>O(1)</td>
+            <td>No shifting needed</td>
+          </tr>
+          <tr>
+            <td><code>lst.pop(i)</code> — arbitrary</td>
+            <td>O(N)</td>
+            <td>O(N)</td>
+            <td>Must shift elements</td>
+          </tr>
+          <tr>
+            <td><code>lst.insert(i, x)</code></td>
+            <td>O(N)</td>
+            <td>O(N)</td>
+            <td>Must shift elements</td>
+          </tr>
+          <tr>
+            <td><code>x in lst</code></td>
+            <td>O(N)</td>
+            <td>O(N)</td>
+            <td>Linear search</td>
+          </tr>
+          <tr>
+            <td><code>lst.remove(x)</code></td>
+            <td>O(N)</td>
+            <td>O(N)</td>
+            <td>Finds then shifts</td>
+          </tr>
+          <tr>
+            <td><code>lst.sort()</code></td>
+            <td>O(N log N)</td>
+            <td>O(N log N)</td>
+            <td>Timsort algorithm</td>
+          </tr>
+          <tr>
+            <td><code>len(lst)</code></td>
+            <td>O(1)</td>
+            <td>O(1)</td>
+            <td>Stored in object header</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Lists vs. Generators</h3>
+      <p>
+        Lists store everything in memory at once — <strong>O(N) space</strong>. <strong>Generators</strong> 
+        produce items one at a time — <strong>O(1) space</strong>. This makes generators ideal for 
+        large or infinite sequences.
+      </p>
+
+<pre><code class="language-python"># List — stores all 10 million items in memory
+large_list = [x**2 for x in range(10_000_000)]
+# Uses ~80 MB of RAM
+
+# Generator — produces items lazily, one at a time
+large_gen = (x**2 for x in range(10_000_000))
+# Uses ~100 bytes of RAM
+
+# You can iterate through a generator just like a list
+for item in large_gen:
+    if item > 100:
+        break
+    print(item)
+
+# Generators are one-time use — they're exhausted after iteration
+gen = (x for x in range(3))
+print(list(gen))  # [0, 1, 2]
+print(list(gen))  # [] — already exhausted!</code></pre>
+
+      <blockquote>
+        <strong>Rule of thumb:</strong> Use lists when you need random access, multiple iterations, 
+        or need to modify elements. Use generators when you only need to iterate once and memory 
+        is a concern.
+      </blockquote>
+
+      <h3>Lists vs. Tuples vs. Sets vs. Dicts</h3>
+      <p>Choosing the right data structure is half the battle:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Structure</th>
+            <th>Ordered</th>
+            <th>Mutable</th>
+            <th>Duplicates</th>
+            <th>Lookup</th>
+            <th>Use When...</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>list</code></td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>✅</td>
+            <td>O(N)</td>
+            <td>You need order and mutability</td>
+          </tr>
+          <tr>
+            <td><code>tuple</code></td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>O(N)</td>
+            <td>Fixed collections, dict keys</td>
+          </tr>
+          <tr>
+            <td><code>set</code></td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>❌</td>
+            <td>O(1)</td>
+            <td>Membership testing, uniqueness</td>
+          </tr>
+          <tr>
+            <td><code>dict</code></td>
+            <td>✅*</td>
+            <td>✅</td>
+            <td>keys: ❌</td>
+            <td>O(1)</td>
+            <td>Key-value mapping</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><em>* Dicts preserve insertion order since Python 3.7.</em></p>
+
+      <hr>
+
+      <!-- ============================================
+           CHAPTER 4: PRODUCTION PATTERNS
+           ============================================ -->
+      <h2 id="chapter-4">🏭 Chapter 4: Production Patterns</h2>
+
+      <h3>Pattern 1: Building Lists Efficiently</h3>
+      <p>
+        When building a large list in a loop, <code>append()</code> is fine, but list comprehensions 
+        are typically faster because they're optimized at the C level.
+      </p>
+
+<pre><code class="language-python"># ❌ Slow: repeated append in a loop
+result = []
+for i in range(1_000_000):
+    result.append(i * 2)
+
+# ✅ Fast: list comprehension
+result = [i * 2 for i in range(1_000_000)]
+
+# ✅ Even better for simple transformations: map()
+result = list(map(lambda i: i * 2, range(1_000_000)))</code></pre>
+
+      <h3>Pattern 2: Using Lists as Stacks and Queues</h3>
+
+<pre><code class="language-python"># Lists as STACKS (LIFO) — efficient
+stack = []
+stack.append(1)   # Push
+stack.append(2)
+stack.append(3)
+top = stack.pop()  # Pop — O(1)
+
+# Lists as QUEUES (FIFO) — INEFFICIENT
+# pop(0) is O(N) because all elements must shift
+queue = []
+queue.append(1)
+queue.append(2)
+front = queue.pop(0)  # ⚠️ O(N) — avoid for large queues
+
+# ✅ Use collections.deque for queues
+from collections import deque
+queue = deque()
+queue.append(1)
+queue.append(2)
+front = queue.popleft()  # ✅ O(1)</code></pre>
+
+      <h3>Pattern 3: Filtering and Transforming</h3>
+
+<pre><code class="language-python"># Real-world: processing API response data
+api_response = [
+    {"id": 1, "name": "Alice", "active": True, "score": 85},
+    {"id": 2, "name": "Bob", "active": False, "score": 72},
+    {"id": 3, "name": "Charlie", "active": True, "score": 91},
+    {"id": 4, "name": "Diana", "active": True, "score": 68},
+]
+
+# Get names of active users with score > 80
+top_active = [
+    user["name"] 
+    for user in api_response 
+    if user["active"] and user["score"] > 80
+]
+# ["Alice", "Charlie"]
+
+# Compute average score
+scores = [user["score"] for user in api_response]
+average = sum(scores) / len(scores)
+
+# Group by active status
+from itertools import groupby
+sorted_users = sorted(api_response, key=lambda u: u["active"])
+for active, group in groupby(sorted_users, key=lambda u: u["active"]):
+    print(f"Active: {active}")
+    for user in group:
+        print(f"  - {user['name']}")</code></pre>
+
+      <h3>Pattern 4: Avoiding Common Pitfalls</h3>
+
+<pre><code class="language-python"># ❌ PITFALL 1: Modifying a list while iterating
+numbers = [1, 2, 3, 4, 5]
+for n in numbers:
+    if n % 2 == 0:
+        numbers.remove(n)  # ⚠️ Skips elements!
+
+# ✅ Fix: iterate over a copy or use list comprehension
+numbers = [n for n in numbers if n % 2 != 0]
+
+# ❌ PITFALL 2: The multiplication trap with nested lists
+matrix = [[0] * 3] * 3
+matrix[0][0] = 1
+print(matrix)
+# [[1, 0, 0], [1, 0, 0], [1, 0, 0]]  — all rows are the SAME object!
+
+# ✅ Fix: use a comprehension to create independent rows
+matrix = [[0] * 3 for _ in range(3)]
+matrix[0][0] = 1
+print(matrix)
+# [[1, 0, 0], [0, 0, 0], [0, 0, 0]]  — correct!
+
+# ❌ PITFALL 3: Using a list for membership testing
+allowed_users = ["alice", "bob", "charlie", ...]  # 10,000 users
+if user in allowed_users:  # O(N) — slow for large lists
+    ...
+
+# ✅ Fix: use a set for O(1) membership testing
+allowed_users = {"alice", "bob", "charlie", ...}
+if user in allowed_users:  # O(1) — fast!</code></pre>
+
+      <h3>Pattern 5: Unpacking and Swapping</h3>
+
+<pre><code class="language-python"># Tuple unpacking
+first, second, third = [1, 2, 3]
+
+# Extended unpacking (Python 3+)
+first, *rest = [1, 2, 3, 4, 5]
+# first = 1, rest = [2, 3, 4, 5]
+
+first, *middle, last = [1, 2, 3, 4, 5]
+# first = 1, middle = [2, 3, 4], last = 5
+
+# Elegant swap — no temporary variable needed
+a, b = 1, 2
+a, b = b, a  # a is now 2, b is now 1
+
+# Unpacking function arguments
+def process(x, y, z):
+    return x + y + z
+
+args = [1, 2, 3]
+result = process(*args)  # Unpacks list into arguments</code></pre>
+
+      <hr>
+
+      <!-- ============================================
+           CHEAT SHEET
+           ============================================ -->
+      <h2 id="cheat-sheet">📋 Cheat Sheet</h2>
+      <p>A quick reference for the most common list operations:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Operation</th>
+            <th>Method / Syntax</th>
+            <th>Time Complexity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Create empty list</td><td><code>[]</code> or <code>list()</code></td><td>O(1)</td></tr>
+          <tr><td>Append to end</td><td><code>lst.append(x)</code></td><td>O(1) amortized</td></tr>
+          <tr><td>Extend with iterable</td><td><code>lst.extend(it)</code></td><td>O(K)</td></tr>
+          <tr><td>Insert at index</td><td><code>lst.insert(i, x)</code></td><td>O(N)</td></tr>
+          <tr><td>Remove by value</td><td><code>lst.remove(x)</code></td><td>O(N)</td></tr>
+          <tr><td>Pop last item</td><td><code>lst.pop()</code></td><td>O(1)</td></tr>
+          <tr><td>Pop at index</td><td><code>lst.pop(i)</code></td><td>O(N)</td></tr>
+          <tr><td>Access by index</td><td><code>lst[i]</code></td><td>O(1)</td></tr>
+          <tr><td>Slice</td><td><code>lst[a:b]</code></td><td>O(K)</td></tr>
+          <tr><td>Length</td><td><code>len(lst)</code></td><td>O(1)</td></tr>
+          <tr><td>Membership</td><td><code>x in lst</code></td><td>O(N)</td></tr>
+          <tr><td>Count occurrences</td><td><code>lst.count(x)</code></td><td>O(N)</td></tr>
+          <tr><td>Find index</td><td><code>lst.index(x)</code></td><td>O(N)</td></tr>
+          <tr><td>Sort in place</td><td><code>lst.sort()</code></td><td>O(N log N)</td></tr>
+          <tr><td>Reverse in place</td><td><code>lst.reverse()</code></td><td>O(N)</td></tr>
+          <tr><td>Copy (shallow)</td><td><code>lst.copy()</code></td><td>O(N)</td></tr>
+          <tr><td>Clear</td><td><code>lst.clear()</code></td><td>O(N)</td></tr>
+        </tbody>
+      </table>
+
+      <hr>
+
+      <!-- ============================================
+           CONCLUSION
+           ============================================ -->
+      <h2 id="conclusion">🎯 Conclusion</h2>
+      <p>
+        Python lists are far more powerful than most developers realize. They are not just 
+        "arrays that can hold anything" — they are carefully engineered data structures with 
+        specific performance characteristics that, when understood, allow you to write code that 
+        is both elegant and blazingly fast.
+      </p>
+      <p>
+        The key takeaways:
+      </p>
+      <ul>
+        <li><strong>Lists are dynamic arrays</strong>, not linked lists. Indexing is O(1); insertion in the middle is O(N).</li>
+        <li><strong>List comprehensions</strong> are faster and more Pythonic than equivalent <code>for</code> loops with <code>append()</code>.</li>
+        <li><strong>Use sets for membership testing</strong> when the collection is large — the O(N) vs O(1) difference is enormous.</li>
+        <li><strong>Use <code>collections.deque</code></strong> when you need a queue — <code>list.pop(0)</code> is a performance trap.</li>
+        <li><strong>Understand shallow vs. deep copy</strong> — it will save you hours of debugging nested list bugs.</li>
+        <li><strong>Generators are your friend</strong> when memory matters — they let you process millions of items with kilobytes of RAM.</li>
+      </ul>
+      <p>
+        Master these concepts, and you will write Python code that is not just correct, but 
+        <em>professional</em>. The difference between a junior developer and a senior one is often 
+        not what they know, but how deeply they understand the tools they use every day.
+      </p>
+
+      <hr>
+
+      <!-- ============================================
+           CONTACT / FEEDBACK
+           ============================================ -->
+      <h3>💬 Thoughts or Corrections?</h3>
+      <p>
+        I write these guides to share what I've learned and to solidify my own understanding. 
+        If you spotted a typo, disagree with something, or want to share your own favorite 
+        Python list trick, I'd genuinely love to hear from you. The best way to learn is together.
+      </p>
+      
+      <!-- Email icon only, tangerine color -->
+      <a href="mailto:rahul.r.pal@outlook.in?subject=Feedback on Python Lists Guide" class="email-icon-link" aria-label="Send email feedback">
+        <svg class="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </a>
+
+    </article>
+  </div>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer style="text-align: center; padding: 3rem 1.5rem; color: var(--color-muted); border-top: 1px solid var(--border-white); margin-top: 4rem;">
+    <p>&copy; 2026 Rahul Pal. Built with pure HTML & CSS.</p>
+    <p style="margin-top: 1rem;">
+      <a href="mailto:rahul.r.pal@outlook.in" style="color: var(--color-tertiary); margin: 0 0.5rem;">Email</a> · 
+      <a href="https://github.com/coderpal" target="_blank" rel="noopener" style="color: var(--color-tertiary); margin: 0 0.5rem;">GitHub</a> · 
+      <a href="../blog.html" style="color: var(--color-tertiary); margin: 0 0.5rem;">Blog</a>
+    </p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

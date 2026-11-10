@@ -1,0 +1,108 @@
+<!--
+==============================================
+FILE: blog.html
+DESCRIPTION: Blog listing page matching the main site design
+==============================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Technical articles on Python, backend development, and software engineering by Rahul Pal">
+  <title>Blog | Rahul Pal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- ============================================
+       NAVIGATION BAR (Same as index.html)
+       ============================================ -->
+  <header class="main-header">
+    <nav class="nav-container">
+      <div class="logo">Rahul Pal</div>
+      <div class="nav-links">
+        <a href="index.html">About</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================
+       BLOG HEADER SECTION
+       ============================================ -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
+      <p class="section-label">Technical Writing</p>
+      <h1 class="blog-title">Blog</h1>
+      <p class="blog-subtitle">
+        Deep dives into Python, backend systems, and the craft of building reliable software.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BLOG POSTS LIST
+       ============================================ -->
+  <div class="main-content">
+    <section class="blog-section">
+      
+      <!-- Blog Post Card 1 -->
+      <a href="blog/blog-lists.html" class="blog-card-link">
+        <article class="card blog-card">
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-date">November 9, 2026</span>
+              <span class="blog-category">Python</span>
+            </div>
+            
+            <h2 class="blog-card-title">The Definitive Guide to Python Lists</h2>
+            
+            <p class="blog-card-desc">
+              A deep-dive into Python lists covering every method, list comprehensions, 
+              memory behavior, performance characteristics, and production patterns used 
+              in real backend systems.
+            </p>
+            
+            <div class="blog-card-footer">
+              <span class="read-more">Read Article</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </article>
+      </a>
+
+      <!-- Future Blog Post Card (Template) -->
+      <!--
+      <a href="blog/future-post.html" class="blog-card-link">
+        <article class="card blog-card">
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-date">Date</span>
+              <span class="blog-category">Category</span>
+            </div>
+            
+            <h2 class="blog-card-title">Post Title</h2>
+            
+            <p class="blog-card-desc">
+              Description of the blog post.
+            </p>
+            
+            <div class="blog-card-footer">
+              <span class="read-more">Read Article</span>
+              <span class="arrow">→</span>
+            </div>
+          </div>
+        </article>
+      </a>
+      -->
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

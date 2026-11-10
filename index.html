@@ -1,0 +1,225 @@
+<!--
+==============================================
+FILE: index.html
+==============================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rahul Pal - Software Developer, Backend & Systems Engineer">
+  <title>Rahul Pal | Backend & Systems Engineer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- ============================================
+       NAVIGATION BAR
+       ============================================ -->
+  <header class="main-header">
+    <nav class="nav-container">
+      <div class="logo">Rahul Pal</div>
+      <div class="nav-links">
+        <a href="#content">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================
+       LANDING SECTION (Hero + Quote + Arrow)
+       ============================================ -->
+  <section class="landing-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Rahul Pal</h1>
+      <p class="hero-subtitle">Software Developer, Backend & Systems Engineer.</p>
+    </div>
+
+    <div class="quote-container">
+      <blockquote class="quote-block">
+        <p class="quote-text">"The only way to do great work is to love what you do."</p>
+        <footer class="quote-author">— Steve Jobs</footer>
+      </blockquote>
+
+      <a href="#content" class="animated-arrow" aria-label="Scroll down">
+        <svg class="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================
+       REST OF THE CONTENT
+       ============================================ -->
+  <div id="content" class="main-content">
+    
+    <!-- EXPERTISE SECTION -->
+    <section class="section-block">
+      <p class="section-label">What I do</p>
+      <h2 class="section-heading">My Expertise</h2>
+      <div class="expertise-grid">
+        <div class="card">
+          <h3 class="card-title">Backend Development</h3>
+          <p class="card-text">Python, FastAPI, Flask, RESTful APIs, Webhooks, JWT Authentication. Building robust, scalable backend systems with clean architecture.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Database & Data</h3>
+          <p class="card-text">PostgreSQL, complex SQL optimization, Pandas, NumPy. Designing efficient schemas, query optimization, and data pipelines.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">DevOps & Process</h3>
+          <p class="card-text">Git, Bash/Linux, Docker, CI/CD. Agile/Scrum certified (PSM I) with strong SDLC expertise and clean branching workflows.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY PROJECTS SECTION -->
+    <section id="projects" class="section-block">
+      <p class="section-label">Selected work</p>
+      <h2 class="section-heading">My Projects</h2>
+      <p class="section-intro">
+        Built scalable backend systems and fintech solutions focused on money correctness, 
+        concurrency handling, and explainable systems.
+      </p>
+
+      <div class="card featured-project">
+        <div class="card-inner">
+          <p class="featured-label">Featured Project</p>
+          <h3 class="featured-title">Rental Pricing Engine with Payments Ledger</h3>
+          <p class="featured-desc">
+            A production-grade backend service that recommends nightly prices for short-term rentals 
+            and processes bookings through a double-entry ledger. Built to demonstrate deep fintech 
+            competencies: <strong class="text-secondary">idempotency, concurrency handling, and absolute money correctness</strong>.
+          </p>
+          
+          <ul class="feature-list">
+            <li><span class="bullet">→</span> Rule-based dynamic pricing with explainable breakdowns (Pandas)</li>
+            <li><span class="bullet">→</span> PostgreSQL exclusion constraints preventing double-booking race conditions</li>
+            <li><span class="bullet">→</span> Idempotent payment processing with simulated gateway failures</li>
+            <li><span class="bullet">→</span> Double-entry ledger with automated reconciliation (debits = credits)</li>
+          </ul>
+
+          <div class="tech-tags">
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Docker</span>
+            <span class="tag">pytest</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/coderpal" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+            <a href="blog.html" class="btn btn-secondary">Read Case Study</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <section id="experience" class="section-block">
+      <p class="section-label">Career</p>
+      <h2 class="section-heading">Professional Experience</h2>
+      
+      <div class="experience-list">
+        <div class="experience-item">
+          <div class="experience-meta">
+            <p class="meta-date">Jun 2026 – Present</p>
+            <p class="meta-location">Mumbai, India</p>
+          </div>
+          <div class="experience-details">
+            <h3 class="job-title">Senior Associate Developer (Operations)</h3>
+            <p class="company-name">Riyaasat Lifestyle Limited</p>
+            <p class="job-desc">
+              Developed core backend retail systems (OMS, WMS, IMS) managing 5,000+ SKUs. 
+              Integrated Shopify webhooks, reducing manual data entry by 80% and order fulfillment 
+              latency by 30%. Engineered analytical reports using Pandas/NumPy, improving inventory 
+              accuracy by 95%. Achieved 99.9% uptime on headless Linux servers.
+            </p>
+            <div class="tech-tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Pandas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="experience-meta">
+            <p class="meta-date">Apr 2024 – Jan 2026</p>
+            <p class="meta-location">Mumbai, India</p>
+          </div>
+          <div class="experience-details">
+            <h3 class="job-title">Web Application Developer</h3>
+            <p class="company-name">Kalki Fashion Pvt. Ltd.</p>
+            <p class="job-desc">
+              Engineered an end-to-end Order-to-Dispatch workflow using FastAPI and PostgreSQL, 
+              reducing order processing time by 40%. Developed a high-performance Inventory Management 
+              System supporting 150+ concurrent users, cutting manual errors by 50%. Operated as sole 
+              developer, taking full SDLC ownership while maintaining clean Git workflows.
+            </p>
+            <div class="tech-tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Flask</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Power BI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY ACHIEVEMENTS -->
+    <section class="section-block">
+      <p class="section-label">Impact</p>
+      <h2 class="section-heading">Key Achievements</h2>
+      <div class="achievements-grid">
+        <div class="card achievement-card">
+          <p class="achievement-stat">40%</p>
+          <p class="achievement-desc">System efficiency increase via automated workflows and database optimization.</p>
+        </div>
+        <div class="card achievement-card">
+          <p class="achievement-stat">95%</p>
+          <p class="achievement-desc">Inventory accuracy improvement through automated data manipulation pipelines.</p>
+        </div>
+        <div class="card achievement-card">
+          <p class="achievement-stat">99.9%</p>
+          <p class="achievement-desc">Backend uptime on headless Linux servers, ensuring robust services.</p>
+        </div>
+        <div class="card achievement-card">
+          <p class="achievement-stat">5,000+</p>
+          <p class="achievement-desc">Active SKUs managed through core backend retail systems (OMS, WMS, IMS).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section id="contact" class="section-block cta-section">
+      <p class="section-label">Let's connect</p>
+      <h2 class="section-heading">Available for opportunities</h2>
+      <p class="section-intro">
+        Have an exciting backend or fintech project you need help with? 
+        Send me an email or connect with me.
+      </p>
+      
+      <div class="cta-links">
+        <a href="mailto:rahul.r.pal@outlook.in" class="btn btn-primary">Get in Touch</a>
+        <a href="https://www.linkedin.com/in/rahulpal1991/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+        <a href="https://github.com/coderpal" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
+      </div>
+      
+      <p class="contact-info">📧 rahul.r.pal@outlook.in &nbsp;•&nbsp; 📱 +91 7400208221</p>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
