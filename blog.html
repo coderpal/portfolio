@@ -1,7 +1,7 @@
 <!--
 ==============================================
 FILE: blog.html
-DESCRIPTION: Blog listing page matching the main site design
+DESCRIPTION: Blog listing with category filters
 ==============================================
 -->
 <!DOCTYPE html>
@@ -9,14 +9,14 @@ DESCRIPTION: Blog listing page matching the main site design
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Technical articles on Python, backend development, and software engineering by Rahul Pal">
+  <meta name="description" content="Technical articles on Python, backend development, data structures, and algorithms by Rahul Pal">
   <title>Blog | Rahul Pal</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   
   <!-- ============================================
-       NAVIGATION BAR (Same as index.html)
+       NAVIGATION BAR
        ============================================ -->
   <header class="main-header">
     <nav class="nav-container">
@@ -39,69 +39,152 @@ DESCRIPTION: Blog listing page matching the main site design
       <p class="section-label">Technical Writing</p>
       <h1 class="blog-title">Blog</h1>
       <p class="blog-subtitle">
-        Deep dives into Python, backend systems, and the craft of building reliable software.
+        Deep dives into Python, backend systems, data structures, algorithms, and the craft of building reliable software.
       </p>
     </div>
   </section>
 
   <!-- ============================================
-       BLOG POSTS LIST
+       CATEGORY FILTERS
        ============================================ -->
   <div class="main-content">
     <section class="blog-section">
       
-      <!-- Blog Post Card 1 -->
-      <a href="blog/blog-lists.html" class="blog-card-link">
-        <article class="card blog-card">
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-date">November 9, 2026</span>
-              <span class="blog-category">Python</span>
-            </div>
-            
-            <h2 class="blog-card-title">The Definitive Guide to Python Lists</h2>
-            
-            <p class="blog-card-desc">
-              A deep-dive into Python lists covering every method, list comprehensions, 
-              memory behavior, performance characteristics, and production patterns used 
-              in real backend systems.
-            </p>
-            
-            <div class="blog-card-footer">
-              <span class="read-more">Read Article</span>
-              <span class="arrow">→</span>
-            </div>
-          </div>
-        </article>
-      </a>
+      <!-- Category Filter Buttons -->
+      <div class="category-filter">
+        <button class="filter-btn active" data-category="all">All Posts</button>
+        <button class="filter-btn" data-category="core-python">Core Python</button>
+        <button class="filter-btn" data-category="data-structures">Data Structures</button>
+        <button class="filter-btn" data-category="algorithms">Algorithms</button>
+        <button class="filter-btn" data-category="advanced-python">Advanced Python</button>
+        <button class="filter-btn" data-category="backend">Backend</button>
+      </div>
 
-      <!-- Future Blog Post Card (Template) -->
-      <!--
-      <a href="blog/future-post.html" class="blog-card-link">
-        <article class="card blog-card">
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-date">Date</span>
-              <span class="blog-category">Category</span>
+      <!-- ============================================
+           BLOG POSTS LIST
+           ============================================ -->
+      <div class="blog-list" id="blog-list">
+        
+        <!-- Blog Post 1: Dictionaries -->
+        <article class="card blog-card" data-categories="core-python data-structures">
+          <a href="blog/blog-dictionaries.html" class="blog-card-link">
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-date">November 13, 2026</span>
+                <span class="blog-category">Core Python</span>
+                <span class="blog-category">Data Structures</span>
+              </div>
+              <h2 class="blog-card-title">Comprehensive Guide to Python Dictionaries</h2>
+              <p class="blog-card-desc">
+                A deep dive into Python dictionaries — from basic creation to hash table internals, 
+                dict views, merge operators, custom keys, performance characteristics, and production patterns.
+              </p>
+              <div class="blog-card-footer">
+                <span class="read-more">Read Article</span>
+                <span class="arrow">→</span>
+              </div>
             </div>
-            
-            <h2 class="blog-card-title">Post Title</h2>
-            
-            <p class="blog-card-desc">
-              Description of the blog post.
-            </p>
-            
-            <div class="blog-card-footer">
-              <span class="read-more">Read Article</span>
-              <span class="arrow">→</span>
-            </div>
-          </div>
+          </a>
         </article>
-      </a>
-      -->
+
+        <!-- Blog Post 2: Tuples -->
+        <article class="card blog-card" data-categories="core-python data-structures">
+          <a href="blog/blog-tuples.html" class="blog-card-link">
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-date">November 12, 2026</span>
+                <span class="blog-category">Core Python</span>
+                <span class="blog-category">Data Structures</span>
+              </div>
+              <h2 class="blog-card-title">Comprehensive Guide to Python Tuples</h2>
+              <p class="blog-card-desc">
+                A deep dive into Python tuples — from basic creation to unpacking patterns, named tuples, 
+                immutability guarantees, performance characteristics, and production patterns.
+              </p>
+              <div class="blog-card-footer">
+                <span class="read-more">Read Article</span>
+                <span class="arrow">→</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Blog Post 3: Strings -->
+        <article class="card blog-card" data-categories="core-python data-structures">
+          <a href="blog/blog-strings.html" class="blog-card-link">
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-date">November 11, 2026</span>
+                <span class="blog-category">Core Python</span>
+                <span class="blog-category">Data Structures</span>
+              </div>
+              <h2 class="blog-card-title">Comprehensive Guide to Python Strings</h2>
+              <p class="blog-card-desc">
+                A deep dive into Python strings — from basic creation to Unicode internals, f-string mastery, 
+                encoding pitfalls, and production patterns used in real backend systems.
+              </p>
+              <div class="blog-card-footer">
+                <span class="read-more">Read Article</span>
+                <span class="arrow">→</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Blog Post 4: Lists -->
+        <article class="card blog-card" data-categories="data-structures core-python">
+          <a href="blog/blog-lists.html" class="blog-card-link">
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-date">November 9, 2026</span>
+                <span class="blog-category">Data Structures</span>
+                <span class="blog-category">Core Python</span>
+              </div>
+              <h2 class="blog-card-title">Comprehensive Guide to Python Lists</h2>
+              <p class="blog-card-desc">
+                A deep-dive into Python lists covering every method, list comprehensions, memory behavior, 
+                performance characteristics, and production patterns used in real backend systems.
+              </p>
+              <div class="blog-card-footer">
+                <span class="read-more">Read Article</span>
+                <span class="arrow">→</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- Empty State Message (shown when no posts match the filter) -->
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <div class="empty-state-icon">📝</div>
+        <h3 class="empty-state-title">Coming Soon</h3>
+        <p class="empty-state-text">
+          I'm currently crafting in-depth articles for the 
+          <span class="empty-category-name">this</span> category. 
+          Quality takes time — check back in a few days for something worth reading.
+        </p>
+        <p class="empty-state-hint">
+          In the meantime, feel free to explore the other categories or 
+          <a href="mailto:rahul.r.pal@outlook.in" style="color: var(--color-cyan);">reach out</a> 
+          if there's a specific topic you'd like me to cover.
+        </p>
+      </div>
 
     </section>
   </div>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer style="text-align: center; padding: 3rem 1.5rem; color: var(--color-muted); border-top: 1px solid var(--border-white); margin-top: 4rem;">
+    <p>&copy; 2026 Rahul Pal. Built with pure HTML & CSS.</p>
+    <p style="margin-top: 1rem;">
+      <a href="mailto:rahul.r.pal@outlook.in" style="color: var(--color-tertiary); margin: 0 0.5rem;">Email</a> · 
+      <a href="https://github.com/coderpal" target="_blank" rel="noopener" style="color: var(--color-tertiary); margin: 0 0.5rem;">GitHub</a> · 
+      <a href="blog.html" style="color: var(--color-tertiary); margin: 0 0.5rem;">Blog</a>
+    </p>
+  </footer>
 
   <script src="script.js"></script>
 </body>

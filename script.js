@@ -1,24 +1,3 @@
-/*
-==============================================
-PORTFOLIO DIRECTORY STRUCTURE
-==============================================
-portfolio/
-├── index.html              
-├── blog.html               
-├── style.css               
-├── script.js               ← YOU ARE HERE
-├── images/                 
-│   └── blog/               
-│       └── lists/          
-│           └── list.png    
-└── blog/                   
-    └── blog-lists.html     
-==============================================
-FILE: script.js
-DESCRIPTION: JavaScript for interactivity and animations
-==============================================
-*/
-
 // ============================================
 // Smooth scroll for anchor links
 // ============================================
@@ -52,23 +31,57 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-// Observe all sections for animation
 document.querySelectorAll('section').forEach(section => {
   observer.observe(section);
 });
 
 // ============================================
-// Add hover effect to skill cards
+// Blog Category Filter
 // ============================================
-document.querySelectorAll('.skill-card').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.transform = 'translateY(-8px)';
+const filterButtons = document.querySelectorAll('.filter-btn');
+const blogCards = document.querySelectorAll('.blog-card');
+const emptyState = document.getElementById('empty-state');
+
+if (filterButtons.length > 0) {
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      const category = button.getAttribute('data-category');
+      let visibleCount = 0;
+      
+      // Filter blog cards
+      blogCards.forEach(card => {
+        const cardCategories = card.getAttribute('data-categories') || '';
+        const categoriesList = cardCategories.split(' ').filter(c => c.length > 0);
+        
+        if (category === 'all' || categoriesList.includes(category)) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Show/hide empty state message
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.style.display = 'flex';
+          // Update the category name in the message
+          const categoryName = button.textContent.trim();
+          const categorySpan = emptyState.querySelector('.empty-category-name');
+          if (categorySpan) {
+            categorySpan.textContent = categoryName;
+          }
+        } else {
+          emptyState.style.display = 'none';
+        }
+      }
+    });
   });
-  
-  card.addEventListener('mouseleave', function() {
-    this.style.transform = 'translateY(0)';
-  });
-});
+}
 
 // ============================================
 // Console Easter Egg
